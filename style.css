@@ -4,3 +4,101 @@
     box-sizing: border-box;
 }
 
+:root {
+    --main-color: #202124;
+    --background: lightgrey;
+
+    --light-color: #EBD781;
+    --light-top: black;
+}
+
+body {
+    color:var(--main-text);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background);
+    font-family: sans-serif;
+}
+
+
+/* Scherm bovenkant */
+header {
+    background-color: var(--main-color);
+    width: 90vw;
+    aspect-ratio: 2/1;
+    margin: 0 auto;
+    max-width: 600px;
+    position: relative;
+}
+
+
+/* //////////////// */
+/*     Lampie       */
+/* //////////////// */
+header div {
+    height: 2.5rem;
+    aspect-ratio: 1/1;
+    background-color: var( --light-color);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    box-shadow: 0em .5em 5em 5em rgba(255,255,255,.5);
+}
+
+header div:after {
+    content: "";
+    position: absolute;
+    height: 2.5rem;
+    aspect-ratio: 1/2;
+    background: linear-gradient(180deg,
+        var(--light-top) 0%,
+        var(--light-top) 42.5%,
+        var( --light-color) 42.5%,
+        var( --light-color) 100%);
+    left: 50%;
+    top: -50%;
+    transform: translateX(-50%);
+    border-radius: .5em .5em 0 0;
+}
+
+header div:before {
+    content: "";
+    position: absolute;
+    height: 2.5rem;
+    width: .175em;
+    height: 10em;
+    background-color: var(--light-top);
+    left: 50%;
+    transform: translateX(-50%) translateY(-100%);
+}
+
+
+/* //////////////// */
+/*       Main       */
+/* //////////////// */
+main {
+    border: 1px solid black;
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+form {
+    display: grid;
+}
+
+form p {
+    border: 1px solid black;
+    padding: 1em;
+    background-color: black;
+    color: yellowgreen
+}
+
+form input[type=button]:first-of-type {
+    background-color: red;
+    border-style: none;
+    border-radius: 100%;
+    width: 4em;
+    aspect-ratio: 1/1;
+}
