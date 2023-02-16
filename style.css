@@ -9,6 +9,7 @@
     --background: lightgrey;
 
     --light-color: #EBD781;
+    --light-shadow: rgba(236,215,128,.5);
     --light-top: black;
 }
 
@@ -44,7 +45,7 @@ header div {
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    box-shadow: 0em .5em 5em 5em rgba(255,255,255,.5);
+    box-shadow: 0em .5em 5em 5em var(--light-shadow);
 }
 
 header div:after {
@@ -85,20 +86,49 @@ main {
 }
 
 form {
-    display: grid;
+    display: flex;
 }
 
 form p {
-    border: 1px solid black;
     padding: 1em;
     background-color: black;
     color: yellowgreen
 }
 
-form input[type=button]:first-of-type {
-    background-color: red;
-    border-style: none;
-    border-radius: 100%;
-    width: 4em;
+form input[type="checkbox"] {
+    display: none;
+}
+
+
+/*       Aan knop       */
+body:has(#bigred:checked) div {
+    --light-color: white;
+    opacity: .2;
+}
+
+form label:first-of-type {
+    height: 5em;
     aspect-ratio: 1/1;
+    background-color: red;
+    border-radius: 50%;
+}
+
+
+/*       Omhoog & Omlaag      */
+form label:nth-of-type(2) {
+    height: 5em;
+    aspect-ratio: 1/1;
+    background-color: blue;
+    border-radius: 50%; 
+}
+
+body:has(#updown:checked) div {
+    transform: translateX(-50%) translateY(-550%);
+}
+
+
+
+/*       Range slider      */
+form input[type="range"] {
+    width: 50em;
 }
