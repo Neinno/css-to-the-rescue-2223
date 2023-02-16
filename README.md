@@ -3,7 +3,7 @@
 Voor het vak CSS to the Rescue ga ik een modulair bedieningspaneel maken met CSS. Ik wil hierbij de focus leggen op het animeren, en die animaties zo realistich mogelijk maken. 
 
 ### Inspiratie
-![Inspiratie | width=500px](/readmeimgs/inspiratie.png)
+<img src="/readmeimgs/inspiratie.png" width=500px>
 
 Dit is een codepen die Sanne liet zien, ik was erg onder de indruk dat het allemaal mogelijk is met CSS. Ik wil kijken of ik dit ook kan, maar dan met meerdere controls.
 
@@ -13,9 +13,9 @@ In de eerste week heb ik mijn opdracht keuze, en mijn focus doorgegeven tijdens 
 ## Week 2
 In week 2 ben ik begonnen met de setup van de HTML. Eerst heb ik een kleine tekening gemaakt zodat ik een kleine start heb. Daarna vond ik het lastig om aan de CSS te beginnen. Ik wist niet zo goed waar ik nou moest starten.
 
-![Tekening | width=500px](/readmeimgs/design.jpg) 
+<img src="/readmeimgs/design.jpg" width=500px>
 
 Ik ben uiteindelijk eerst gestart met het maken van de functionaliteiten van het bedieningspaneel. Ik heb doormiddel van checkboxes en de :has CSS selector voor elkaar gekregen dat ik een lamp aan en uit kan laten gaan. Daarna heb ik proberen een slider te stylen (Input type range). Waar ik achter ben gekomen is dat je (orient="vertical") kan toevoegen in de HTML om hem verticaal te krijgen, maar dit werkt alleen in firefox, en de :has selector werkt daar weer niet in.
 
-![Voortgang 1 | width=500px](/readmeimgs/voortgang1.png)
+<img src="/readmeimgs/voortgang1.png" width=500px>
 
