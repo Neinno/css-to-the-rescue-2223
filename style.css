@@ -46,6 +46,7 @@ header div {
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     box-shadow: 0em .5em 5em 5em var(--light-shadow);
+    transition: 1s;
 }
 
 header div:after {
@@ -53,6 +54,7 @@ header div:after {
     position: absolute;
     height: 2.5rem;
     aspect-ratio: 1/2;
+    background-color: var(--light-color);
     background: linear-gradient(180deg,
         var(--light-top) 0%,
         var(--light-top) 42.5%,
@@ -87,6 +89,7 @@ main {
 
 form {
     display: flex;
+
 }
 
 form p {
@@ -131,4 +134,56 @@ body:has(#updown:checked) div {
 /*       Range slider      */
 form input[type="range"] {
     width: 50em;
+    transform: rotate(-90deg);
+
+}
+
+
+/*       Kleuren      */
+form label:nth-of-type(3) {
+    height: 2em;
+    aspect-ratio: 1/1;
+    background-color: dodgerblue;
+    border-radius: 50%; 
+}
+
+body:has(#kleur1:checked) div {
+    --light-color: dodgerblue;
+}
+
+
+
+form label:nth-of-type(4) {
+    height: 2em;
+    aspect-ratio: 1/1;
+    background-color: crimson;
+    border-radius: 50%; 
+}
+
+body:has(#kleur2:checked) div {
+    --light-color: crimson;
+}
+
+
+form label:nth-of-type(5) {
+    height: 2em;
+    aspect-ratio: 1/1;
+    background-color: greenyellow;
+    border-radius: 50%; 
+}
+
+body:has(#kleur3:checked) div {
+    --light-color: greenyellow;
+}
+
+
+form label:nth-of-type(6) {
+    height: 2em;
+    aspect-ratio: 1/1;
+    background-color: orangered;
+    border-radius: 50%; 
+}
+
+body:has(#kleur4:checked) div {
+    --light-color: orangered;
 }
