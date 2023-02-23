@@ -92,6 +92,7 @@ form {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     position: relative;
+    align-items: center;
 }
 
 p {
@@ -153,14 +154,20 @@ form label:first-of-type::after {
 form label:nth-of-type(2) {
     width: 7.5em;
     aspect-ratio: 1/2;
-    background-color: silver;
+    background: linear-gradient(
+        to right,
+        var(--background) 7.5% 0,
+        silver 7.5% 32.5%,
+        var(--background) 32.5% 67.5%,
+        silver 67.5% 92.5%,
+        var(--background) 92.5% 0); 
     position: relative;
-    transform: translateX(-50%);
     border-radius: .5em;
     left: 20%;
     top: 5em;
-    transition: 1s;
     transform-style:preserve-3d;
+    perspective: 10em;
+    box-shadow:inset .2em .1em 2em;
 }
 
 /* De handle */
@@ -169,15 +176,16 @@ form label:nth-of-type(2)::after {
     width: 10em;
     display: block;
     aspect-ratio: 3/1;
-    background: linear-gradient(black 75%, white); 
+    background: linear-gradient(black 75%, black); 
     position: absolute;
     border-radius: .5em;
     left: 50%;
-    animation: handle ease-in 2s reverse forwards;
+    box-shadow: .5em .5em 1em;
+    animation:handle .5s ease-in reverse forwards;
 }
 
 body:has(#updown:checked) form label:nth-of-type(2)::after  {
-    animation: handle 2s ease-out forwards;
+    animation:handle-reverse .5s ease-out forwards;
 }
 
 
@@ -196,25 +204,56 @@ form label:nth-of-type(2)::before {
         black 25% 0,
         transparent 0 75%,
         black 75% 0); 
-    animation: switch ease-in 2s reverse forwards;
+    animation: switch .5s ease-in reverse forwards;
 }
 
 body:has(#updown:checked) form label:nth-of-type(2)::before  {
-    animation: switch 2s ease-out forwards;
+    animation: switch-reverse .5s ease-out forwards;
 }
 
 @keyframes switch {
     0% {
         transform: translateX(-50%) rotateX(-170deg);
     }
+    50% {
+        transform: translateX(-50%) rotateX(-40deg);
+    }
     100% {
         transform: translateX(-50%) rotateX(-10deg);  
+    }
+}
+
+@keyframes switch-reverse {
+    0% {
+        transform: translateX(-50%) rotateX(-170deg);
+    }
+    50% {
+        transform: translateX(-50%) rotateX(-130deg);
+    }
+    100% {
+        transform: translateX(-50%) rotateX(-10deg); 
     }
 }
 
 @keyframes handle {
     0% {
         transform: translateY(10em) translateX(-50%);
+    }
+    50% {
+        transform: translateY(2em) translateX(-50%);
+    }
+    100% {
+        transform: translateY(0em) translateX(-50%);
+    }
+}
+
+
+@keyframes handle-reverse {
+    0% {
+        transform: translateY(10em) translateX(-50%);
+    }
+    50% {
+        transform: translateY(8em) translateX(-50%);
     }
     100% {
         transform: translateY(0em) translateX(-50%);
@@ -229,12 +268,111 @@ body:has(#updown:checked) header section > div {
 
 /*     Range slider      */
 form input[type="range"] {
-    transform: rotate(-90deg);
     cursor: pointer;
-    position: absolute;
-    right: 0;
-    top: 50%;
+    grid-area: 1/-1;
+    appearance: none;
+    outline: none;
+    height: 1em;
+    aspect-ratio: 20/1;
+    position: relative;
+    right: -25%;
+    transform: rotate(-90deg) translateX(-5em);
+    background: grey;
+    box-shadow: inset .1em .1em 1em;
 }
+
+form input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    height: 2.5em;
+    aspect-ratio: 1/1;
+    background: linear-gradient(
+        #556b2f 20%,
+        grey  20% 40%,
+        #556b2f 40% 60%,
+        grey  60% 80%,
+        #556b2f 80% 0
+         ); 
+    box-shadow:  .1em .1em .2em;
+    padding: .2em;
+}
+
+head[data--x="10"] + body header > section div {
+    animation: lamponoff 1.5s ease-out infinite;
+}
+
+head[data--x="9"] + body header > section div {
+    opacity: 1;
+}
+
+head[data--x="8"] + body header > section div {
+    opacity: .8;
+}
+
+head[data--x="7"] + body header > section div {
+    opacity: .75;
+}
+
+head[data--x="6"] + body header > section div {
+    opacity: .7;
+}
+
+head[data--x="5"] + body header > section div {
+    opacity: .65;
+}
+
+head[data--x="4"] + body header > section div {
+    opacity: .6;
+}
+
+head[data--x="3"] + body header > section div {
+    opacity: .5;
+}
+
+head[data--x="2"] + body header > section div {
+    opacity: .4;
+}
+
+head[data--x="1"] + body header > section div {
+    opacity: .3;
+}
+
+head[data--x="0"] + body header > section div {
+    opacity: .1;
+}
+
+@keyframes lamponoff {
+    10% {
+        opacity: .2;
+    }
+    20% {
+        opacity: 1;
+    }
+    30% {
+
+    }
+    40% {
+
+    }
+    50% {
+        opacity: .2;
+    }
+    60% {
+        opacity: 1;
+    }
+    70% {
+        opacity: .2;
+    }
+    80% {
+        opacity: 1;
+    }
+    90% {
+
+    }
+    100% {
+        opacity: 1; 
+    }
+}
+
 
 
 /*       Kleuren      */
@@ -249,8 +387,6 @@ body:has(#kleur1:checked) header > section div {
     --light-color: dodgerblue;
     --light-shadow: rgba(29,139,245,.5);
 }
-
-
 
 form label:nth-of-type(4) {
     width: 2em;
