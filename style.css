@@ -6,7 +6,7 @@
 
 :root {
     --main-color: #202124;
-    --background: lightgrey;
+    --background: #ADB2BD;
 
     --light-color: #EBD781;
     --light-shadow: rgba(236,215,128,.5);
@@ -25,7 +25,7 @@ body {
 /* Scherm bovenkant */
 header {
     background-color: var(--main-color);
-    width: 90vw;
+    width: 100%;
     aspect-ratio: 2/1;
     margin: 0 auto;
     max-width: 600px;
@@ -36,7 +36,7 @@ header {
 /* //////////////// */
 /*     Lampie       */
 /* //////////////// */
-header div {
+header > section div {
     height: 2.5rem;
     aspect-ratio: 1/1;
     background-color: var( --light-color);
@@ -49,7 +49,7 @@ header div {
     transition: 1s;
 }
 
-header div:after {
+header > section div:after {
     content: "";
     position: absolute;
     height: 2.5rem;
@@ -66,7 +66,7 @@ header div:after {
     border-radius: .5em .5em 0 0;
 }
 
-header div:before {
+header > section div:before {
     content: "";
     position: absolute;
     height: 2.5rem;
@@ -82,108 +82,197 @@ header div:before {
 /*       Main       */
 /* //////////////// */
 main {
-    border: 1px solid black;
     margin: 0 auto;
+    width: 100%;
     max-width: 600px;
+
 }
 
 form {
-    display: flex;
-
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    position: relative;
 }
 
-form p {
+p {
     padding: 1em;
     background-color: black;
-    color: yellowgreen
+    color: yellowgreen;
 }
 
 form input[type="checkbox"] {
     display: none;
 }
 
+form label  {
+    cursor: pointer;
+}
+
 
 /*       Aan knop       */
-body:has(#bigred:checked) div {
+body:has(#bigred:checked) header > section div {
     --light-color: white;
     opacity: .2;
 }
 
-form label:first-of-type {
-    height: 5em;
-    aspect-ratio: 1/1;
-    background-color: red;
-    border-radius: 50%;
+body:has(#bigred:checked) form label:first-of-type {
+    box-shadow: 0 0 0;
 }
+
+body:has(#bigred:checked) form label:first-of-type::after {
+    top: 0;
+    box-shadow: inset .1em .1em .2em black;
+}
+
+form label:first-of-type {
+    width: 5em;
+    aspect-ratio: 1/1;
+    background: hsl(340deg 100% 32%);
+    border-radius: 50%;
+    position: absolute;
+    left:50%;
+    top: 50%;
+    transform: translateX(-50%);
+    box-shadow: .1em .3em 2em;
+    transition: .2s;
+}
+
+form label:first-of-type::after {
+    content: "";
+    width: 5em;
+    aspect-ratio: 1/1;
+    background: hsl(345deg 100% 47%);
+    border-radius: 50%;
+    position: absolute;
+    top: -.5em;
+}
+
 
 
 /*       Omhoog & Omlaag      */
 form label:nth-of-type(2) {
-    height: 5em;
-    aspect-ratio: 1/1;
-    background-color: blue;
-    border-radius: 50%; 
+    width: 7.5em;
+    aspect-ratio: 1/2;
+    background-color: silver;
+    position: relative;
+    transform: translateX(-50%);
+    border-radius: .5em;
+    left: 20%;
+    top: 5em;
+    transition: 1s;
+    transform-style:preserve-3d;
 }
 
-body:has(#updown:checked) div {
+/* De handle */
+form label:nth-of-type(2)::after {
+    content: "";
+    width: 10em;
+    display: block;
+    aspect-ratio: 3/1;
+    background: linear-gradient(black 75%, white); 
+    position: absolute;
+    border-radius: .5em;
+    left: 50%;
+    animation: handle ease-in 2s reverse forwards;
+}
+
+body:has(#updown:checked) form label:nth-of-type(2)::after  {
+    animation: handle 2s ease-out forwards;
+}
+
+
+/* Stokjes */
+form label:nth-of-type(2)::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 6em;
+    aspect-ratio: 1/1.4;
+    left: 50%;
+    top:20%;
+    transform: translateX(-50%);
+    background: linear-gradient(
+        to left,
+        black 25% 0,
+        transparent 0 75%,
+        black 75% 0); 
+    animation: switch ease-in 2s reverse forwards;
+}
+
+body:has(#updown:checked) form label:nth-of-type(2)::before  {
+    animation: switch 2s ease-out forwards;
+}
+
+@keyframes switch {
+    0% {
+        transform: translateX(-50%) rotateX(-170deg);
+    }
+    100% {
+        transform: translateX(-50%) rotateX(-10deg);  
+    }
+}
+
+@keyframes handle {
+    0% {
+        transform: translateY(10em) translateX(-50%);
+    }
+    100% {
+        transform: translateY(0em) translateX(-50%);
+    }
+}
+
+body:has(#updown:checked) header section > div {
     transform: translateX(-50%) translateY(-550%);
 }
 
 
 
-/*       Range slider      */
+/*     Range slider      */
 form input[type="range"] {
-    width: 50em;
     transform: rotate(-90deg);
-
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 50%;
 }
 
 
 /*       Kleuren      */
 form label:nth-of-type(3) {
-    height: 2em;
+    width: 2em;
     aspect-ratio: 1/1;
     background-color: dodgerblue;
     border-radius: 50%; 
 }
 
-body:has(#kleur1:checked) div {
+body:has(#kleur1:checked) header > section div {
     --light-color: dodgerblue;
+    --light-shadow: rgba(29,139,245,.5);
 }
 
 
 
 form label:nth-of-type(4) {
-    height: 2em;
+    width: 2em;
     aspect-ratio: 1/1;
     background-color: crimson;
     border-radius: 50%; 
 }
 
-body:has(#kleur2:checked) div {
+body:has(#kleur2:checked) header > section div {
     --light-color: crimson;
+    --light-shadow: rgba(220,19,60,.5);
 }
 
 
 form label:nth-of-type(5) {
-    height: 2em;
+    width: 2em;
     aspect-ratio: 1/1;
     background-color: greenyellow;
     border-radius: 50%; 
 }
 
-body:has(#kleur3:checked) div {
+body:has(#kleur3:checked) header > section div {
     --light-color: greenyellow;
-}
-
-
-form label:nth-of-type(6) {
-    height: 2em;
-    aspect-ratio: 1/1;
-    background-color: orangered;
-    border-radius: 50%; 
-}
-
-body:has(#kleur4:checked) div {
-    --light-color: orangered;
+    --light-shadow: rgba(173,255,46,.5);
 }
