@@ -6,7 +6,7 @@
 
 :root {
     --main-color: #202124;
-    --background: #ADB2BD;
+    --background: white;
 
     --light-color: #EBD781;
     --light-shadow: rgba(236,215,128,.5);
@@ -27,7 +27,7 @@ header {
     background-color: var(--main-color);
     width: 100%;
     aspect-ratio: 2/1;
-    margin: 0 auto;
+    margin: 0 auto 2em auto;
     max-width: 600px;
     position: relative;
 }
@@ -88,17 +88,35 @@ main {
 
 }
 
+main > section {
+    height: 50dvh;
+    padding: 1em;
+    border-radius: 2em;
+    background: #e0e0e0;
+    border-radius: 2em;
+    position: relative;
+    box-shadow: 12px 8px 1em rgba(0,0,0,0.1) inset,
+    -12px -8px 26px rgba(0,0,0,0.4) inset,
+    0 0 2px 0 rgba(0,0,0,0.5) inset,
+    1px 1px 4px rgba(0,0,0,0.5);
+}
+
 form {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1em;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 1em;
     position: relative;
-    align-items: center;
+    place-content: center;
 }
 
 p {
-    padding: 1em;
     background-color: black;
     color: yellowgreen;
+    position: absolute;
+    padding: 1em;
+    bottom: 0;
+    width: 100%;
 }
 
 form input[type="checkbox"] {
@@ -116,29 +134,28 @@ body:has(#bigred:checked) header > section div {
     opacity: .2;
 }
 
-body:has(#bigred:checked) form label:first-of-type {
+body:has(#bigred:checked) form > label:first-of-type {
     box-shadow: 0 0 0;
 }
 
-body:has(#bigred:checked) form label:first-of-type::after {
+body:has(#bigred:checked) form > label:first-of-type::after {
     top: 0;
     box-shadow: inset .1em .1em .2em black;
 }
 
-form label:first-of-type {
+form > label:first-of-type {
     width: 5em;
     aspect-ratio: 1/1;
     background: hsl(340deg 100% 32%);
     border-radius: 50%;
-    position: absolute;
-    left:50%;
-    top: 50%;
-    transform: translateX(-50%);
+    display: grid;
+    place-self: center;
+    transform: translate(-50%);
     box-shadow: .1em .3em 2em;
     transition: .2s;
 }
 
-form label:first-of-type::after {
+form > label:first-of-type::after {
     content: "";
     width: 5em;
     aspect-ratio: 1/1;
@@ -151,46 +168,28 @@ form label:first-of-type::after {
 
 
 /*       Omhoog & Omlaag      */
-form label:nth-of-type(2) {
+form > label:nth-of-type(2) {
     width: 7.5em;
     aspect-ratio: 1/2;
     background: linear-gradient(
         to right,
-        var(--background) 7.5% 0,
-        silver 7.5% 32.5%,
-        var(--background) 32.5% 67.5%,
-        silver 67.5% 92.5%,
-        var(--background) 92.5% 0); 
-    position: relative;
+        var(--background) 7% 0,
+        silver 7.5% 30%,
+        var(--background) 32.5% 65%,
+        silver 67.5% 90%,
+        var(--background) 95% 0); 
     border-radius: .5em;
     left: 20%;
     top: 5em;
+    display: grid;
+    place-self: center;
     transform-style:preserve-3d;
     perspective: 10em;
     box-shadow:inset .2em .1em 2em;
 }
 
-/* De handle */
-form label:nth-of-type(2)::after {
-    content: "";
-    width: 10em;
-    display: block;
-    aspect-ratio: 3/1;
-    background: linear-gradient(black 75%, black); 
-    position: absolute;
-    border-radius: .5em;
-    left: 50%;
-    box-shadow: .5em .5em 1em;
-    animation:handle .5s ease-in reverse forwards;
-}
-
-body:has(#updown:checked) form label:nth-of-type(2)::after  {
-    animation:handle-reverse .5s ease-out forwards;
-}
-
-
 /* Stokjes */
-form label:nth-of-type(2)::before {
+form > label:nth-of-type(2)::after {
     content: "";
     position: absolute;
     display: block;
@@ -198,58 +197,90 @@ form label:nth-of-type(2)::before {
     aspect-ratio: 1/1.4;
     left: 50%;
     top:20%;
-    transform: translateX(-50%);
     background: linear-gradient(
         to left,
-        black 25% 0,
+        grey 2.5%,
+        white 12.5%,
+        grey 25%,
         transparent 0 75%,
-        black 75% 0); 
+        grey 77.5%,
+        white 95%,
+        grey 100%); 
     animation: switch .5s ease-in reverse forwards;
 }
 
+body:has(#updown:checked) form label:nth-of-type(2)::after  {
+    animation: switch-reverse .5s ease-out forwards; 
+}
+
+/* De handle */
+form > label:nth-of-type(2)::before {
+    content: "";
+    width: 10em;
+    display: block;
+    aspect-ratio: 3/1;
+    background: linear-gradient(
+        grey 25%,
+        silver 75%,
+        grey 100%); 
+    position: absolute;
+    border-radius: .5em;
+    left: 50%;
+    top: 1.5em;
+    box-shadow: .5em .5em 1em;
+    animation:handle .5s ease-in reverse forwards;
+}
+
 body:has(#updown:checked) form label:nth-of-type(2)::before  {
-    animation: switch-reverse .5s ease-out forwards;
+    animation:handle-reverse .5s ease-out forwards;
 }
 
 @keyframes switch {
     0% {
         transform: translateX(-50%) rotateX(-170deg);
+    
     }
     50% {
         transform: translateX(-50%) rotateX(-40deg);
     }
     100% {
-        transform: translateX(-50%) rotateX(-10deg);  
+        transform: translateX(-50%) rotateX(-10deg);
+    
     }
 }
 
 @keyframes switch-reverse {
     0% {
         transform: translateX(-50%) rotateX(-170deg);
+   
     }
     50% {
         transform: translateX(-50%) rotateX(-130deg);
     }
     100% {
         transform: translateX(-50%) rotateX(-10deg); 
+      
     }
 }
 
 @keyframes handle {
     0% {
         transform: translateY(10em) translateX(-50%);
+        top: 1.5em;
     }
     50% {
         transform: translateY(2em) translateX(-50%);
     }
     100% {
         transform: translateY(0em) translateX(-50%);
+        top: -1.5em;
     }
 }
 
 
 @keyframes handle-reverse {
     0% {
+        top: 1.5em;
         transform: translateY(10em) translateX(-50%);
     }
     50% {
@@ -257,6 +288,7 @@ body:has(#updown:checked) form label:nth-of-type(2)::before  {
     }
     100% {
         transform: translateY(0em) translateX(-50%);
+        top: -.5em;
     }
 }
 
@@ -267,15 +299,22 @@ body:has(#updown:checked) header section > div {
 
 
 /*     Range slider      */
+form > section {
+    aspect-ratio: 1/1;
+    display: grid;
+    place-content: center;
+    position: relative;
+}
+
 form input[type="range"] {
     cursor: pointer;
-    grid-area: 1/-1;
     appearance: none;
     outline: none;
     height: 1em;
-    aspect-ratio: 20/1;
-    position: relative;
-    right: -25%;
+    position: absolute;
+    aspect-ratio: 17/1;
+    left: -1em;
+    top: 3em;
     transform: rotate(-90deg) translateX(-5em);
     background: grey;
     box-shadow: inset .1em .1em 1em;
@@ -376,11 +415,34 @@ head[data--x="0"] + body header > section div {
 
 
 /*       Kleuren      */
-form label:nth-of-type(3) {
-    width: 2em;
+form section:nth-of-type(2) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+form section:nth-of-type(2) label {
+    width: 3em;
     aspect-ratio: 1/1;
-    background-color: dodgerblue;
     border-radius: 50%; 
+    box-shadow:
+    -1em -1em 1.5em rgba(255,255,255,0.5),
+    1em 1em 1.5em rgba(70,70,70,0.15);
+    border: .5em solid #ececec;
+    transition: .3s;
+}
+
+body:has(#kleur1:checked:checked) form section:nth-of-type(2) label:nth-of-type(1),
+body:has(#kleur2:checked:checked) form section:nth-of-type(2) label:nth-of-type(2),
+body:has(#kleur3:checked:checked) form section:nth-of-type(2) label:nth-of-type(3) {
+    box-shadow:
+    -1em -1em 1.5em rgba(255,255,255,0.5),
+    1em 1em 1.5em rgba(70,70,70,0.15),
+    inset -1em -1em 1.5em rgba(255,255,255,0.5),
+    inset 1em 1em 1.5em rgba(70,70,70,0.15);
+}
+
+form section:nth-of-type(2) label:nth-of-type(1) {
+    background-color: dodgerblue;
 }
 
 body:has(#kleur1:checked) header > section div {
@@ -388,11 +450,8 @@ body:has(#kleur1:checked) header > section div {
     --light-shadow: rgba(29,139,245,.5);
 }
 
-form label:nth-of-type(4) {
-    width: 2em;
-    aspect-ratio: 1/1;
+form section:nth-of-type(2) label:nth-of-type(2) {
     background-color: crimson;
-    border-radius: 50%; 
 }
 
 body:has(#kleur2:checked) header > section div {
@@ -401,11 +460,8 @@ body:has(#kleur2:checked) header > section div {
 }
 
 
-form label:nth-of-type(5) {
-    width: 2em;
-    aspect-ratio: 1/1;
+form section:nth-of-type(2) label:nth-of-type(3) {
     background-color: greenyellow;
-    border-radius: 50%; 
 }
 
 body:has(#kleur3:checked) header > section div {
