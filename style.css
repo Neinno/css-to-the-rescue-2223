@@ -89,16 +89,21 @@ main {
 }
 
 main > section {
-    height: 50dvh;
+    height: 100%;
     padding: 1em;
-    border-radius: 2em;
-    background: #e0e0e0;
+    background-color: #e0e0e0;
     border-radius: 2em;
     position: relative;
     box-shadow: 12px 8px 1em rgba(0,0,0,0.1) inset,
     -12px -8px 26px rgba(0,0,0,0.4) inset,
     0 0 2px 0 rgba(0,0,0,0.5) inset,
     1px 1px 4px rgba(0,0,0,0.5);
+
+    background: conic-gradient(
+        from 1em,
+        red,
+        blue
+    );
 }
 
 form {
@@ -173,8 +178,8 @@ form > label:nth-of-type(2) {
     aspect-ratio: 1/2;
     background: linear-gradient(
         to right,
-        var(--background) 7% 0,
-        silver 7.5% 30%,
+        var(--background) 7% 10%,
+        silver 8%,
         var(--background) 32.5% 65%,
         silver 67.5% 90%,
         var(--background) 95% 0); 
@@ -316,7 +321,10 @@ form input[type="range"] {
     left: -1em;
     top: 3em;
     transform: rotate(-90deg) translateX(-5em);
-    background: grey;
+    background: linear-gradient(
+    silver 35% 0,
+    black 40% 60%,
+    silver 65% 0);
     box-shadow: inset .1em .1em 1em;
 }
 
@@ -324,12 +332,13 @@ form input[type="range"]::-webkit-slider-thumb {
     appearance: none;
     height: 2.5em;
     aspect-ratio: 1/1;
-    background: linear-gradient(
-        #556b2f 20%,
-        grey  20% 40%,
-        #556b2f 40% 60%,
-        grey  60% 80%,
-        #556b2f 80% 0
+    border-radius: 50%;
+    background: conic-gradient(
+        silver 20%,
+        grey 40%,
+        silver 60%,
+        grey 80%,
+        silver 100%
          ); 
     box-shadow:  .1em .1em .2em;
     padding: .2em;
