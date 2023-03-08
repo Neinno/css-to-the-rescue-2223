@@ -30,6 +30,8 @@ header {
     margin: 0 auto 2em auto;
     max-width: 600px;
     position: relative;
+    border: .25em solid grey;
+    z-index: 1;
 }
 
 
@@ -64,6 +66,7 @@ header > section div:after {
     top: -50%;
     transform: translateX(-50%);
     border-radius: .5em .5em 0 0;
+    z-index: -1;
 }
 
 header > section div:before {
@@ -75,6 +78,7 @@ header > section div:before {
     background-color: var(--light-top);
     left: 50%;
     transform: translateX(-50%) translateY(-100%);
+    z-index: -1;
 }
 
 
@@ -98,30 +102,44 @@ main > section {
     -12px -8px 26px rgba(0,0,0,0.4) inset,
     0 0 2px 0 rgba(0,0,0,0.5) inset,
     1px 1px 4px rgba(0,0,0,0.5);
-
-    background: conic-gradient(
-        from 1em,
-        red,
-        blue
-    );
 }
 
 form {
     display: grid;
-    grid-gap: 1em;
+    grid-gap: 2em;
     grid-template-columns: 1fr 1fr;
     margin-top: 1em;
     position: relative;
     place-content: center;
 }
 
+
+/* @media (max-width: 450px) {
+    form {
+        grid-template-columns: 1fr;
+    }
+} */
+
 p {
-    background-color: black;
+    background-color: #202124;
     color: yellowgreen;
-    position: absolute;
     padding: 1em;
-    bottom: 0;
-    width: 100%;
+    grid-area: 1 / span 2;
+    height: 3.5em;
+    margin: 1em 3em;
+    border: .25em solid silver;
+    box-shadow: inset .2em .2em .2em grey,
+    .2em .1em .2em grey;
+}
+
+p::before {
+    content: "Status: On";
+}
+
+p::after {
+    content: "";
+    position: absolute;
+    right:1em;
 }
 
 form input[type="checkbox"] {
@@ -130,6 +148,41 @@ form input[type="checkbox"] {
 
 form label  {
     cursor: pointer;
+}
+
+main > section div {
+    width: 1em;
+    height: 1em;
+    background: conic-gradient(
+        grey 0%
+    );
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: 12px 8px 1em rgba(0,0,0,0.1) inset,
+    -12px -8px 26px rgba(0,0,0,0.4) inset,
+    0 0 2px 0 rgba(0,0,0,0.5) inset,
+    1px 1px 4px rgba(0,0,0,0.5);
+}
+
+main > section div:nth-of-type(1) {
+    top: 1em;
+    left: 1em;
+}
+
+main > section div:nth-of-type(2) {
+    top: 1em;
+    right: 1em;
+  
+}
+
+main > section div:nth-of-type(3) {
+    bottom: 1em;
+    left: 1em;
+}
+
+main > section div:nth-of-type(4) {
+    bottom: 1em;
+    right: 1em; 
 }
 
 
@@ -146,6 +199,10 @@ body:has(#bigred:checked) form > label:first-of-type {
 body:has(#bigred:checked) form > label:first-of-type::after {
     top: 0;
     box-shadow: inset .1em .1em .2em black;
+}
+
+body:has(#bigred:checked) p::before {
+    content: "Status: Off"
 }
 
 form > label:first-of-type {
@@ -178,10 +235,10 @@ form > label:nth-of-type(2) {
     aspect-ratio: 1/2;
     background: linear-gradient(
         to right,
-        var(--background) 7% 10%,
-        silver 8%,
-        var(--background) 32.5% 65%,
-        silver 67.5% 90%,
+        var(--background) 0% 7.5%,
+        silver 10% 27.5%,
+        var(--background) 32% 67.5%,
+        silver 72.5% 90%,
         var(--background) 95% 0); 
     border-radius: .5em;
     left: 20%;
@@ -191,12 +248,14 @@ form > label:nth-of-type(2) {
     transform-style:preserve-3d;
     perspective: 10em;
     box-shadow:inset .2em .1em 2em;
+
 }
 
 /* Stokjes */
 form > label:nth-of-type(2)::after {
     content: "";
     position: absolute;
+    z-index: 1;
     display: block;
     width: 6em;
     aspect-ratio: 1/1.4;
@@ -229,6 +288,7 @@ form > label:nth-of-type(2)::before {
         silver 75%,
         grey 100%); 
     position: absolute;
+    z-index: 2;
     border-radius: .5em;
     left: 50%;
     top: 1.5em;
@@ -270,14 +330,14 @@ body:has(#updown:checked) form label:nth-of-type(2)::before  {
 
 @keyframes handle {
     0% {
-        transform: translateY(10em) translateX(-50%);
+        transform: translateY(10em) translateX(-50%) translateZ(0);
         top: 1.5em;
     }
     50% {
-        transform: translateY(2em) translateX(-50%);
+        transform: translateY(2em) translateX(-50%) translateZ(3.5em);
     }
     100% {
-        transform: translateY(0em) translateX(-50%);
+        transform: translateY(0em) translateX(-50%) translateZ(0);
         top: -1.5em;
     }
 }
@@ -286,13 +346,13 @@ body:has(#updown:checked) form label:nth-of-type(2)::before  {
 @keyframes handle-reverse {
     0% {
         top: 1.5em;
-        transform: translateY(10em) translateX(-50%);
+        transform: translateY(10em) translateX(-50%) translateZ(0);
     }
     50% {
-        transform: translateY(8em) translateX(-50%);
+        transform: translateY(8em) translateX(-50%) translateZ(3.5em);
     }
     100% {
-        transform: translateY(0em) translateX(-50%);
+        transform: translateY(0em) translateX(-50%) translateZ(0);
         top: -.5em;
     }
 }
@@ -309,6 +369,7 @@ form > section {
     display: grid;
     place-content: center;
     position: relative;
+    margin-bottom: 5em;
 }
 
 form input[type="range"] {
@@ -346,6 +407,12 @@ form input[type="range"]::-webkit-slider-thumb {
 
 head[data--x="10"] + body header > section div {
     animation: lamponoff 1.5s ease-out infinite;
+}
+
+head[data--x="10"] + body p::after {
+    content: "Warning";
+    right: 4em;
+    animation: warning 2s infinite;
 }
 
 head[data--x="9"] + body header > section div {
@@ -418,6 +485,18 @@ head[data--x="0"] + body header > section div {
     }
     100% {
         opacity: 1; 
+    }
+}
+
+@keyframes warning {
+    0% {
+        opacity: 100%;
+    }
+    50% {
+        opacity: 0%;
+    }
+    100% {
+        opacity: 100%;
     }
 }
 
