@@ -17,7 +17,7 @@ body {
     color:var(--main-text);
     display: flex;
     flex-direction: column;
-    background-color: var(--background);
+    background-color: #616161;
     font-family: sans-serif;
 }
 
@@ -30,8 +30,14 @@ header {
     margin: 0 auto 2em auto;
     max-width: 600px;
     position: relative;
-    border: .25em solid grey;
-    z-index: 1;
+    border: .5em solid #e0e0e0;
+    box-shadow: 12px 8px 1em rgba(0,0,0,0.1) inset,
+    -12px -8px 26px rgba(0,0,0,0.4) inset,
+    0 0 2px 0 rgba(0,0,0,0.5) inset,
+    1px 1px 4px rgba(0,0,0,0.5),
+    .2em .2em .5em grey inset;
+    border-radius: 2em;
+
 }
 
 
@@ -49,6 +55,7 @@ header > section div {
     transform: translateX(-50%) translateY(-50%);
     box-shadow: 0em .5em 5em 5em var(--light-shadow);
     transition: 1s;
+    z-index: 2;
 }
 
 header > section div:after {
@@ -66,7 +73,7 @@ header > section div:after {
     top: -50%;
     transform: translateX(-50%);
     border-radius: .5em .5em 0 0;
-    z-index: -1;
+    z-index: 1;
 }
 
 header > section div:before {
@@ -78,7 +85,7 @@ header > section div:before {
     background-color: var(--light-top);
     left: 50%;
     transform: translateX(-50%) translateY(-100%);
-    z-index: -1;
+    z-index: 1;
 }
 
 
@@ -102,6 +109,7 @@ main > section {
     -12px -8px 26px rgba(0,0,0,0.4) inset,
     0 0 2px 0 rgba(0,0,0,0.5) inset,
     1px 1px 4px rgba(0,0,0,0.5);
+    container-type: inline-size;
 }
 
 form {
@@ -114,11 +122,11 @@ form {
 }
 
 
-/* @media (max-width: 450px) {
+@container (max-width: 450px) {
     form {
         grid-template-columns: 1fr;
     }
-} */
+}
 
 p {
     background-color: #202124;
@@ -291,7 +299,7 @@ form > label:nth-of-type(2)::before {
     z-index: 2;
     border-radius: .5em;
     left: 50%;
-    top: 1.5em;
+    top:1.5em;
     box-shadow: .5em .5em 1em;
     animation:handle .5s ease-in reverse forwards;
 }
@@ -302,11 +310,12 @@ body:has(#updown:checked) form label:nth-of-type(2)::before  {
 
 @keyframes switch {
     0% {
-        transform: translateX(-50%) rotateX(-170deg);
+        transform: translateX(-50%) rotateX(-150deg);
     
     }
     50% {
         transform: translateX(-50%) rotateX(-40deg);
+
     }
     100% {
         transform: translateX(-50%) rotateX(-10deg);
@@ -321,9 +330,10 @@ body:has(#updown:checked) form label:nth-of-type(2)::before  {
     }
     50% {
         transform: translateX(-50%) rotateX(-130deg);
+
     }
     100% {
-        transform: translateX(-50%) rotateX(-10deg); 
+        transform: translateX(-50%) rotateX(-10deg);
       
     }
 }
@@ -331,29 +341,28 @@ body:has(#updown:checked) form label:nth-of-type(2)::before  {
 @keyframes handle {
     0% {
         transform: translateY(10em) translateX(-50%) translateZ(0);
-        top: 1.5em;
+       
     }
     50% {
-        transform: translateY(2em) translateX(-50%) translateZ(3.5em);
+        transform: translateY(2em) translateX(-50%) translateZ(4em);
     }
     100% {
         transform: translateY(0em) translateX(-50%) translateZ(0);
-        top: -1.5em;
+             top: -.5em; 
     }
 }
 
 
 @keyframes handle-reverse {
     0% {
-        top: 1.5em;
         transform: translateY(10em) translateX(-50%) translateZ(0);
     }
     50% {
-        transform: translateY(8em) translateX(-50%) translateZ(3.5em);
+        transform: translateY(8em) translateX(-50%) translateZ(4em);
     }
     100% {
         transform: translateY(0em) translateX(-50%) translateZ(0);
-        top: -.5em;
+            top: -.5em; 
     }
 }
 
