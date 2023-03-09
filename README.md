@@ -1,5 +1,8 @@
 # CSS to the Rescue @cmda-minor-web 2022 - 2023
 
+### Link naar live versie
+https://neinno.github.io/css-to-the-rescue-2223/index.html
+
 Voor het vak CSS to the Rescue ga ik een modulair bedieningspaneel maken met CSS. Ik wil hierbij de focus leggen op het animeren, en die animaties zo realistich mogelijk maken. 
 
 ### Inspiratie
@@ -68,3 +71,20 @@ Waar ik veel moeite mee had was het oplossen van de animatie van de hendel. Wat 
  transform: translateY(2em) translateX(-50%) translateZ(4em);
 ```
 
+De hendel word nu ook groter en lijkt ook echt naar je toe te komen. De stokjes komen tijdens de animatie nog steeds een beetje door de hendel heen, maar het is mij niet gelukt dit 100% op te lossen.
+
+## Resultaat:
+https://neinno.github.io/css-to-the-rescue-2223/index.html
+
+## Reflectie
+Tijdens CSSTTR heb ik veel nieuwe dingen geleerd en geprobeerd. Ik heb in het begin gekozen voor de opdracht bedieningspaneel. Dit heb ik gekozen omdat ik wou ontdekken wat er allemaal mogelijk was met een form. Ik heb geëxperimenteerd met de volgende CSS properties:
+- :has selector
+- form labels en inputs stylen
+- Animeren en keyframes
+- Gradients
+- Box shadows
+- Verschillende manieren om kleuren aan te geven (RGB, Hex, HSL)
+- Pseudo-elements en de content property
+- @container
+
+Als ik meer tijd had voor de opdracht had ik nog wel wat dingen willen toevoegen. Ik had bijvoorbeeld een animatie willen toevoegen dat de lamp kapot gaat als hij een lange tijd over belast raakt. Ook had ik graag wat meer aandacht willen geven aan de details. Ik had als focus punt het realistisch maken van de controls, maar het is niet helemaal goed gelukt. Toch ben ik redelijk blij met het resultaat. 
