@@ -405,7 +405,7 @@ form input[type="range"]::-webkit-slider-thumb {
 }
 
 head[data--x="10"] + body header > section div {
-    animation: lamponoff 1.5s ease-out infinite, bulbMovement 3s ease infinite;
+    animation: lamponoff 1.5s ease-out infinite, bulbMovement 3s ease-in-out infinite;
 }
 
 head[data--x="10"] + body p::after {
