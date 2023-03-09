@@ -41,5 +41,30 @@ Verder heb ik de kleur knopjes even weg gelaten om te focussen op andere dingen.
 
 Voor week 4 is het de bedoeling om alles af te krijgen. Het enige wat nu nog te doen staat is de animaties wat vloeiender te maken, en wat meer detail toevoegen aan ieder opbject
 
+## Week 4
+Week 4 is de laatste week van CSS to the rescue. In deze week wil ik ervoor zorgen dat alle animaties goed werken, en nog wat extra aandacht geven aan het realistisch maken van mijn paneel. 
 
+Ik ben begonnen met de layout veranderen. Ik heb geprobeerd om met container queries te gaan werken. Dit kreeg ik helaas niet voor elkaar. De code die ik hiervoor wou gebruiken was:
+
+```css
+@container (max-width: 450px) {
+  form {
+    grid-template-columns: 1fr;
+  }
+}
+```
+
+Dit werkte niet voor mij. Uiteindelijk heb ik het niet kunnen oplossen en heb het werkend gekregen met een media query.
+
+Vervolgens ben ik bezig geweest met het meer realistisch maken van de controls van het paneel. Ik heb gekeken naar skeuomorphism en neumorphism om mijn paneel te stylen.
+
+<img src="/readmeimgs/voortgang4.png" width=500px>
+
+Ik heb veel van deze dingen voor elkaar kunnen krijg door gebuik te maken van box shadows en gradients.
+
+Waar ik veel moeite mee had was het oplossen van de animatie van de hendel. Wat het probleem was is dat de stokjes in 3d waren geanimeerd. Daardoor kwamen de stokjes door de hendel heen. Dit heb ik kunnen oplossen door ook op de Z as te animeren.
+
+```css
+ transform: translateY(2em) translateX(-50%) translateZ(4em);
+```
 

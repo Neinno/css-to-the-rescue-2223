@@ -162,6 +162,7 @@ main > section div {
     -12px -8px 26px rgba(0,0,0,0.4) inset,
     0 0 2px 0 rgba(0,0,0,0.5) inset,
     1px 1px 4px rgba(0,0,0,0.5);
+    transform-style:preserve-3d;
 }
 
 main > section div:nth-of-type(1) {
@@ -212,9 +213,9 @@ form > label:first-of-type {
     border-radius: 50%;
     display: grid;
     place-self: center;
-    transform: translate(-50%);
     box-shadow: .1em .3em 2em;
     transition: .2s;
+    transform: translateY(0%);
 }
 
 form > label:first-of-type::after {
@@ -370,7 +371,6 @@ form > section {
     display: grid;
     place-content: center;
     position: relative;
-    margin-bottom: 5em;
 }
 
 form input[type="range"] {
@@ -380,8 +380,6 @@ form input[type="range"] {
     height: 1em;
     position: absolute;
     aspect-ratio: 17/1;
-    left: -1em;
-    top: 3em;
     transform: rotate(-90deg) translateX(-5em);
     background: linear-gradient(
     silver 35% 0,
@@ -407,7 +405,7 @@ form input[type="range"]::-webkit-slider-thumb {
 }
 
 head[data--x="10"] + body header > section div {
-    animation: lamponoff 1.5s ease-out infinite;
+    animation: lamponoff 1.5s ease-out infinite, bulbMovement 3s ease infinite;
 }
 
 head[data--x="10"] + body p::after {
@@ -499,6 +497,19 @@ head[data--x="0"] + body header > section div {
     100% {
         opacity: 100%;
     }
+} 
+
+@keyframes bulbMovement {
+    0% {
+        transform:  perspective(5em) translateZ(1em) translateX(-50%) translateY(-50%);
+    }
+    50% {
+        transform:  perspective(2em) translatez(-1em) translateX(-50%) translateY(-50%);
+    }
+    100% {
+        transform:  perspective(5em) translatez(1em) translateX(-50%) translateY(-50%);
+       
+    }
 }
 
 
@@ -556,4 +567,23 @@ form section:nth-of-type(2) label:nth-of-type(3) {
 body:has(#kleur3:checked) header > section div {
     --light-color: greenyellow;
     --light-shadow: rgba(173,255,46,.5);
+}
+
+@media only screen and (max-width: 450px) { 
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5em;
+    }
+
+    form > section {
+        aspect-ratio: 0;
+        justify-items: center;
+        margin-bottom: 2em;
+    }
+
+    form input[type="range"] {
+        transform: rotate(0) translateX(-50%);
+        left: 50%;
+    }
 }
