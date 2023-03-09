@@ -109,7 +109,6 @@ main > section {
     -12px -8px 26px rgba(0,0,0,0.4) inset,
     0 0 2px 0 rgba(0,0,0,0.5) inset,
     1px 1px 4px rgba(0,0,0,0.5);
-    container-type: inline-size;
 }
 
 form {
@@ -119,13 +118,6 @@ form {
     margin-top: 1em;
     position: relative;
     place-content: center;
-}
-
-
-@container (max-width: 450px) {
-    form {
-        grid-template-columns: 1fr;
-    }
 }
 
 p {
