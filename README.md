@@ -5,6 +5,9 @@ https://neinno.github.io/css-to-the-rescue-2223/index.html
 
 Voor het vak CSS to the Rescue ga ik een modulair bedieningspaneel maken met CSS. Ik wil hierbij de focus leggen op het animeren, en die animaties zo realistich mogelijk maken. 
 
+## Werking
+Mijn bedieningspaneel werkt alleen op google chrome!
+
 ### Inspiratie
 <img src="/readmeimgs/inspiratie.png" width=500px>
 
