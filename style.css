@@ -86,6 +86,7 @@ header > section div:before {
     left: 50%;
     transform: translateX(-50%) translateY(-100%);
     z-index: 1;
+    transition: 1s;
 }
 
 
@@ -130,16 +131,22 @@ p {
     border: .25em solid silver;
     box-shadow: inset .2em .2em .2em grey,
     .2em .1em .2em grey;
+
+    display:flex;
+    gap:.25em;
 }
 
 p::before {
-    content: "Status: On";
+    content: attr(data-on);
+    order:1;
 }
 
 p::after {
     content: "";
-    position: absolute;
-    right:1em;
+    /* position: absolute; */
+    /* right:1em; */
+    margin-left:auto;
+    order:2;
 }
 
 form input[type="checkbox"] {
@@ -203,7 +210,8 @@ body:has(#bigred:checked) form > label:first-of-type::after {
 }
 
 body:has(#bigred:checked) p::before {
-    content: "Status: Off"
+    /* content: "Status: Off" */
+    content:attr(data-off);
 }
 
 form > label:first-of-type {
@@ -409,7 +417,7 @@ head[data--x="10"] + body header > section div {
 }
 
 head[data--x="10"] + body p::after {
-    content: "Warning";
+    content: attr(data-warning);
     right: 4em;
     animation: warning 2s infinite;
 }
